@@ -1,6 +1,6 @@
 #include "bits/stdc++.h" // INT_MAX
 #include <vector>
-#include "data_structure.hpp"
+#include "Bellman-Ford-algorithm.hpp"
 
 // файл с определениями
 

@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "data_structure.hpp"
+#include "Bellman-Ford-algorithm.hpp"
 
 using namespace std;
 
