@@ -6,19 +6,6 @@
 
 namespace itis {
 
-  struct Edge {
-    int src;
-    int dest;
-    int weight;
-  };
-
-  struct Graph {
-    int V;
-    int E;
-
-    std::vector<Edge>* edge;
-  };
-
   Graph* createGraph(int V, int E){
     auto* graph = new Graph;
     graph->V = V;

@@ -1,16 +1,10 @@
 import argparse
 
-DEFAULT_DESCRIPTION = 'CSV dataset generator script demo.'
+DEFAULT_DESCRIPTION = 'CSV dataset generator script.'
 DEFAULT_SAMPLES = 100
 
 
 def parse_args():
-    """
-    Парсинг аргументов командной строки (CLI).
-    :return интерфейс для работы с аргументами.
-
-    Больше информации на https://docs.python.org/3.7/howto/argparse.html
-    """
     parser = argparse.ArgumentParser(description=DEFAULT_DESCRIPTION)
 
     parser.add_argument('output',
@@ -34,6 +28,11 @@ if __name__ == '__main__':
 
     # запись данных в файл
     with open(args.output, 'w') as file:
-        for i in range(args.samples - 1):
-            file.write('{},'.format(i))
-        file.write(str(args.samples - 1))
+        for i in range(args.samples):
+            data = [[0 for x in range(100)]] * 100
+
+            for j in range(100):
+                for k in range(100):
+                    pass
+
+                file.write('{},'.format(i))
