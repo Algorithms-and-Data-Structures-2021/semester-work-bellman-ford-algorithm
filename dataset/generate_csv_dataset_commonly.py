@@ -3,7 +3,7 @@ import random
 
 DEFAULT_DESCRIPTION = 'CSV dataset generator script.'
 DEFAULT_SAMPLES = 100
-FILES = ["100", "500", "1000", "5000", "10000", "50000", "100000", "500000", "1000000"]
+FILES = ["100","250", "500","750", "1000","2500", "5000", "7500", "10000"]
 
 
 def parse_args():

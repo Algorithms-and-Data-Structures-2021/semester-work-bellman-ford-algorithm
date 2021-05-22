@@ -17,14 +17,15 @@ static constexpr auto kProjectPath = string_view{PROJECT_SOURCE_DIR};
 int main() {
 
   const auto path = string(kDatasetPath);
-  const auto output_path = string(kProjectPath) + "/benchmark/results/heapSortResults.csv";
+  const auto output_path = string(kProjectPath) + "/benchmark/result.csv";
 
   auto output_file1 = ofstream(output_path);
   output_file1.close();
 
   vector<string> folders = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10"};
-  vector<string> files = {"100", "500", "1000", "5000", "10000", "50000", "100000", "500000", "1000000"};
-  vector<int> dataKeeper;
+  vector<string> files = {"100","250", "500","750", "1000","2500", "5000", "7500", "10000"};
+  vector<Edge> edges;
+  vector<int> vertexes;
   for (const string& file : files) {
     for (string folder : folders) {
       for (int i = 1; i < 11; i++) {
@@ -35,14 +36,15 @@ int main() {
         if (input_file) {
           for (string line; getline(input_file, line, ','); /* ... */) {
             auto ss = stringstream(line);
-            dataKeeper.push_back(stoi(line));
+            vertexes.push_back(stoi(line));
           }
-          int n = dataKeeper.size();
-          const auto time_point_before_heap_sort = chrono::high_resolution_clock::now();
+          for (const auto& vertex : vertexes){
 
-          const auto time_point_after_heap_sort = chrono::high_resolution_clock::now();
-          time_diff_heap_sort += time_point_after_heap_sort - time_point_before_heap_sort;
-          dataKeeper.clear();
+          }
+//          const auto time_point_before_heap_sort = chrono::high_resolution_clock::now();
+//
+//          const auto time_point_after_heap_sort = chrono::high_resolution_clock::now();
+//          time_diff_heap_sort += time_point_after_heap_sort - time_point_before_heap_sort;
         }
 
         input_file.close();
