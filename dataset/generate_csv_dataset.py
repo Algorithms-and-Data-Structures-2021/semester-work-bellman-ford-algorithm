@@ -1,4 +1,5 @@
 import argparse
+import random
 
 DEFAULT_DESCRIPTION = 'CSV dataset generator script.'
 DEFAULT_SAMPLES = 100
@@ -28,11 +29,28 @@ if __name__ == '__main__':
 
     # запись данных в файл
     with open(args.output, 'w') as file:
-        for i in range(args.samples):
-            data = [[0 for x in range(100)]] * 100
+        counter = 0
+        data = []
 
-            for j in range(100):
-                for k in range(100):
-                    pass
+        for n in range(args.samples):
+            data.append([])
 
-                file.write('{},'.format(i))
+            for h in range(100):
+                data[n].append(0)
+
+        for i in range(args.samples - 1, -1, -1):
+            for j in range(6, len(data) - counter - 2, -1):
+                isExist = random.randint(0, 1)
+
+                if isExist == 1:
+                    randomNumber = random.randint(-100, 100)
+                    data[i][j] = randomNumber
+                    data[j][i] = randomNumber
+
+            counter += 1
+
+        for i in range(len(data)):
+            for j in range(len(data)):
+                file.write(str(data[i][j]) + ",")
+
+        file.write(str(random.randint(0, args.samples)))
