@@ -35,11 +35,11 @@ if __name__ == '__main__':
         for n in range(args.samples):
             data.append([])
 
-            for h in range(100):
+            for h in range(args.samples):
                 data[n].append(0)
 
         for i in range(args.samples - 1, -1, -1):
-            for j in range(6, len(data) - counter - 2, -1):
+            for j in range(args.samples - 1, len(data) - counter - 1, -1):
                 isExist = random.randint(0, 1)
 
                 if isExist == 1:
