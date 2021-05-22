@@ -23,30 +23,28 @@ if __name__ == '__main__':
 
     for elem in FILES:
         with open(args.output + elem + ".csv", 'w') as file:
-            for elem in FILES:
-                with open(elem + ".csv", 'w') as file:
-                    counter = 0
-                    data = []
+            counter = 0
+            data = []
 
-                    for n in range(int(elem)):
-                        data.append([])
+            for n in range(int(elem)):
+                data.append([])
 
-                        for h in range(int(elem)):
-                            data[n].append(0)
+                for h in range(int(elem)):
+                    data[n].append(0)
 
-                    for i in range(int(elem) - 1, -1, -1):
-                        for j in range(int(elem) - 1, len(data) - counter - 1, -1):
-                            isExist = random.randint(0, 1)
+            for i in range(int(elem) - 1, -1, -1):
+                for j in range(int(elem) - 1, len(data) - counter - 1, -1):
+                    isExist = random.randint(0, 1)
 
-                            if isExist == 1:
-                                randomNumber = random.randint(-100, 100)
-                                data[i][j] = randomNumber
-                                data[j][i] = randomNumber
+                    if isExist == 1:
+                        randomNumber = random.randint(-100, 100)
+                        data[i][j] = randomNumber
+                        data[j][i] = randomNumber
 
-                        counter += 1
+                counter += 1
 
-                    for i in range(len(data)):
-                        for j in range(len(data)):
-                            file.write(str(data[i][j]) + ",")
+            for i in range(len(data)):
+                for j in range(len(data)):
+                    file.write(str(data[i][j]) + ",")
 
-                    file.write(str(random.randint(0, int(elem))))
+            file.write(str(random.randint(0, int(elem))))
