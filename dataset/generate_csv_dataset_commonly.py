@@ -19,10 +19,21 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()
 
+<<<<<<< HEAD
     # запись данных в файл
 
     for elem in FILES:
         with open(args.output + elem + ".csv", 'w') as file:
+=======
+    # валидация аргументов
+    if args.samples < 0:
+        raise ValueError('Number of samples must be greater than 0.')
+
+    # запись данных в файл
+
+    for elem in FILES:
+        with open(elem + ".csv", 'w') as file:
+>>>>>>> origin/main
             counter = 0
             data = []
 
