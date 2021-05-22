@@ -19,43 +19,34 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()
 
-<<<<<<< HEAD
     # запись данных в файл
 
     for elem in FILES:
         with open(args.output + elem + ".csv", 'w') as file:
-=======
-    # валидация аргументов
-    if args.samples < 0:
-        raise ValueError('Number of samples must be greater than 0.')
+            for elem in FILES:
+                with open(elem + ".csv", 'w') as file:
+                    counter = 0
+                    data = []
 
-    # запись данных в файл
+                    for n in range(int(elem)):
+                        data.append([])
 
-    for elem in FILES:
-        with open(elem + ".csv", 'w') as file:
->>>>>>> origin/main
-            counter = 0
-            data = []
+                        for h in range(int(elem)):
+                            data[n].append(0)
 
-            for n in range(int(elem)):
-                data.append([])
+                    for i in range(int(elem) - 1, -1, -1):
+                        for j in range(int(elem) - 1, len(data) - counter - 1, -1):
+                            isExist = random.randint(0, 1)
 
-                for h in range(int(elem)):
-                    data[n].append(0)
+                            if isExist == 1:
+                                randomNumber = random.randint(-100, 100)
+                                data[i][j] = randomNumber
+                                data[j][i] = randomNumber
 
-            for i in range(int(elem) - 1, -1, -1):
-                for j in range(int(elem) - 1, len(data) - counter - 1, -1):
-                    isExist = random.randint(0, 1)
+                        counter += 1
 
-                    if isExist == 1:
-                        randomNumber = random.randint(-100, 100)
-                        data[i][j] = randomNumber
-                        data[j][i] = randomNumber
+                    for i in range(len(data)):
+                        for j in range(len(data)):
+                            file.write(str(data[i][j]) + ",")
 
-                counter += 1
-
-            for i in range(len(data)):
-                for j in range(len(data)):
-                    file.write(str(data[i][j]) + ",")
-
-            file.write(str(random.randint(0, int(elem))))
+                    file.write(str(random.randint(0, int(elem))))
