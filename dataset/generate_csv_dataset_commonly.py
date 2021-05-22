@@ -22,7 +22,7 @@ if __name__ == '__main__':
     # запись данных в файл
 
     for elem in FILES:
-        with open(elem + ".csv", 'w') as file:
+        with open(args.output + elem + ".csv", 'w') as file:
             counter = 0
             data = []
 
