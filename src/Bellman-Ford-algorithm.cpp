@@ -1,16 +1,18 @@
-#include "bits/stdc++.h" // INT_MAX
+
 #include <vector>
+#include <iostream>
 #include "Bellman-Ford-algorithm.hpp"
 
 // файл с определениями
 
 namespace itis {
 
-  Graph* createGraph(int V, int E){
+  Graph* createGraph(int V, int E, std::vector<Edge> edges){
     auto* graph = new Graph;
     graph->V = V;
     graph->E = E;
-    graph->edge = new std::vector<Edge>(static_cast<unsigned long>(E));
+    graph->edge = edges;
+
     return graph;
   }
 
@@ -28,9 +30,9 @@ namespace itis {
     //Стадия фаз. Релаксация ребер.
     for(int i = 0; i<V-1; i++){
       for(int j = 0; j<E; j++){
-        int srcV = graph->edge->at(j).src;
-        int destV = graph->edge->at(j).dest;
-        int edgeWeight = graph->edge->at(j).weight;
+        int srcV = graph->edge.at(j).src;
+        int destV = graph->edge.at(j).dest;
+        int edgeWeight = graph->edge.at(j).weight;
 
         if(dist[static_cast<unsigned long>(srcV)] != INT_MAX &&
             dist[static_cast<unsigned long>(destV)] > dist[static_cast<unsigned long>(srcV)] + edgeWeight){
@@ -41,9 +43,9 @@ namespace itis {
 
     //Проверка на наличие отрицательных циклов. Выполнить (V-1)+1 шаг, если произойдет релаксация, то есть отрицательный цикл.
     for(int i = 0; i<E; i++){
-      int srcV = graph->edge->at(i).src;
-      int destV = graph->edge->at(i).dest;
-      int edgeWeight = graph->edge->at(i).weight;
+      int srcV = graph->edge.at(i).src;
+      int destV = graph->edge.at(i).dest;
+      int edgeWeight = graph->edge.at(i).weight;
 
       if(dist[static_cast<unsigned long>(srcV)] != INT_MAX &&
          dist[static_cast<unsigned long>(destV)] > dist[static_cast<unsigned long>(srcV)] + edgeWeight){

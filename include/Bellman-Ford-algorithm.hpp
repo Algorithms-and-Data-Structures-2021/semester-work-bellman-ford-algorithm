@@ -14,7 +14,7 @@ namespace itis {
     int V;
     int E;
 
-    std::vector<Edge>* edge;
+    std::vector<Edge> edge;
   };
 
   Graph* createGraph(int V, int E);
