@@ -5,19 +5,20 @@
 namespace itis {
 
   struct Edge {
-    int src;
-    int dest;
-    int weight;
+    Edge(int scr, int dest, int weight);
+    int scr_;
+    int dest_;
+    int weight_;
   };
 
   struct Graph {
-    int V;
-    int E;
+    int V_;
+    int E_;
 
-    std::vector<Edge> edge;
+    std::vector<Edge> edges_;
   };
 
-  Graph* createGraph(int V, int E);
+  Graph* createGraph(int V, int E, std::vector<Edge> edges);
 
   void BellmanFord(Graph* graph, int src);
 }

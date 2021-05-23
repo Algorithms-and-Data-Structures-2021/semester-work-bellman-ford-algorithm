@@ -35,7 +35,7 @@ target_compile_definitions(project_paths INTERFACE
 
 add_library(${PROJECT_NAME} STATIC
         src/Bellman-Ford-algorithm.cpp
-        include/Bellman-Ford-algorithm.hpp)
+        include/Bellman-Ford-algorithm.hpp dataset/generate.cpp)
 
 # включить предупреждения компилятора для библиотеки (линковка)
 target_link_libraries(${PROJECT_NAME} PRIVATE project_warnings)

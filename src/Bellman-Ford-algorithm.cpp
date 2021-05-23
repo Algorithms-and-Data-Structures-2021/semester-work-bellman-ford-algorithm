@@ -9,16 +9,16 @@ namespace itis {
 
   Graph* createGraph(int V, int E, std::vector<Edge> edges){
     auto* graph = new Graph;
-    graph->V = V;
-    graph->E = E;
-    graph->edge = edges;
+    graph->V_ = V;
+    graph->E_ = E;
+    graph->edges_ = edges;
 
     return graph;
   }
 
   void BellmanFord(Graph* graph, int src){
-    int V = graph->V;
-    int E = graph->E;
+    int V = graph->V_;
+    int E = graph->E_;
     std::vector<int> dist(static_cast<unsigned long>(V));
 
     //Заполнение расстояний до вершин бесконечностью
@@ -30,9 +30,9 @@ namespace itis {
     //Стадия фаз. Релаксация ребер.
     for(int i = 0; i<V-1; i++){
       for(int j = 0; j<E; j++){
-        int srcV = graph->edge.at(j).src;
-        int destV = graph->edge.at(j).dest;
-        int edgeWeight = graph->edge.at(j).weight;
+        int srcV = graph->edges_.at(j).scr_;
+        int destV = graph->edges_.at(j).dest_;
+        int edgeWeight = graph->edges_.at(j).weight_;
 
         if(dist[static_cast<unsigned long>(srcV)] != INT_MAX &&
             dist[static_cast<unsigned long>(destV)] > dist[static_cast<unsigned long>(srcV)] + edgeWeight){
@@ -41,11 +41,11 @@ namespace itis {
       }
     }
 
-    //Проверка на наличие отрицательных циклов. Выполнить (V-1)+1 шаг, если произойдет релаксация, то есть отрицательный цикл.
+    //Проверка на наличие отрицательных циклов. Выполнить (V_-1)+1 шаг, если произойдет релаксация, то есть отрицательный цикл.
     for(int i = 0; i<E; i++){
-      int srcV = graph->edge.at(i).src;
-      int destV = graph->edge.at(i).dest;
-      int edgeWeight = graph->edge.at(i).weight;
+      int srcV = graph->edges_.at(i).scr_;
+      int destV = graph->edges_.at(i).dest_;
+      int edgeWeight = graph->edges_.at(i).weight_;
 
       if(dist[static_cast<unsigned long>(srcV)] != INT_MAX &&
          dist[static_cast<unsigned long>(destV)] > dist[static_cast<unsigned long>(srcV)] + edgeWeight){
@@ -56,4 +56,6 @@ namespace itis {
 
     }
   }
+  Edge::Edge(int scr, int dest, int weight) : scr_(scr), dest_(dest), weight_(weight){}
+
 }  // namespace itis

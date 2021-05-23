@@ -1,2 +1,0 @@
-add_executable(generate_csv_dataset.py)
-target_link_libraries(generate_csv_dataset PRIVATE project_warnings project_paths)

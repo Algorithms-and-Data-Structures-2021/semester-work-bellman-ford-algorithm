@@ -4,7 +4,6 @@
 #include <string_view>
 #include <chrono>
 #include <vector>
-#include <sstream>
 
 #include "Bellman-Ford-algorithm.hpp"
 
@@ -23,9 +22,10 @@ int main() {
   output_file1.close();
 
   vector<string> folders = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10"};
-  vector<string> files = {"100","250", "500","750", "1000","2500", "5000", "7500", "10000"};
+  vector<string> files = {"100","250", "500","750", "1000","2500", "5000", "7500", "10000","25000","50000","75000","100000"};
   vector<Edge> edges;
   vector<int> vertexes;
+  int V, E;
   for (const string& file : files) {
     for (string folder : folders) {
       for (int i = 1; i < 11; i++) {
@@ -34,26 +34,31 @@ int main() {
         cout << (path + "/" + folder + "/" + file) << endl;
 
         if (input_file) {
-          for (string line; getline(input_file, line, ','); /* ... */) {
-            auto ss = stringstream(line);
-            vertexes.push_back(stoi(line));
+          input_file >> V;
+          input_file >> E;
+          int mass[3];
+          for (int i = 0; i < E; i++) {
+            for (int i = 0; i < 3; ++i) {
+              input_file >> mass[i];
+            }
+            edges.push_back(*new Edge(mass[0], mass[1], mass[2]));
           }
-          for (const auto& vertex : vertexes){
+          Graph *graph = createGraph(V,E,edges);
 
-          }
-//          const auto time_point_before_heap_sort = chrono::high_resolution_clock::now();
-//
-//          const auto time_point_after_heap_sort = chrono::high_resolution_clock::now();
-//          time_diff_heap_sort += time_point_after_heap_sort - time_point_before_heap_sort;
+          const auto time_point_before_heap_sort = chrono::high_resolution_clock::now();
+          BellmanFord(graph, 1);
+          const auto time_point_after_heap_sort = chrono::high_resolution_clock::now();
+          time_diff_heap_sort += time_point_after_heap_sort - time_point_before_heap_sort;
+          edges.clear();
+          delete graph;
         }
-
         input_file.close();
+
         const auto time_elapsed_ns_heap_sort = chrono::duration_cast<chrono::nanoseconds>(time_diff_heap_sort).count();
         cout << time_elapsed_ns_heap_sort << endl;
 
-        //Открываем файл для записи и вносим полученые данные
         auto output_file = fstream(output_path, ios::app);
-        output_file << folder << "," << file << "," << i << "," << time_elapsed_ns_heap_sort << endl;
+        output_file << time_elapsed_ns_heap_sort << endl;
         output_file.close();
       }
     }
