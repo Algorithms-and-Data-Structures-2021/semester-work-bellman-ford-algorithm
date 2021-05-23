@@ -1,6 +1,7 @@
 
 #include <vector>
 #include <iostream>
+#include <climits>
 #include "Bellman-Ford-algorithm.hpp"
 
 // файл с определениями
